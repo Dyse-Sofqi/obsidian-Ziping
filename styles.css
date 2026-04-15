@@ -484,20 +484,20 @@
 .solar-terms-row .ziping-switch-checkbox,
 .tab-content .ziping-switch-checkbox,
 .dayun-info .ziping-switch-checkbox {
-    --webkit-appearance: none;
+    --webkit-appearance: none !important;
     /* 移除浏览器默认的复选框样式（小方框）。 */
-    appearance: none;
+    appearance: none !important;
     /* 设置开关的宽度（整个滑轨的宽度）。 */
-    width: 36px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 20px;
+    width: 36px !important;
+    height: 20px !important;
+    background-color: #ccc !important;
+    border-radius: 20px !important;
     /* 设置相对定位，为内部的绝对定位伪元素（白色圆点）提供参照坐标系。 */
-    position: relative;
+    position: relative !important;
     transition: background-color 0.2s;
     /* 移除点击时默认的焦点外轮廓（蓝色光圈），保持美观。 */
-    outline: none;
-    border: none;
+    outline: none !important;
+    border: none !important;
 }
 
 /* 2. 白色圆点（滑块） */
@@ -505,12 +505,12 @@
 .tab-content .ziping-switch-checkbox::before,
 .dayun-info .ziping-switch-checkbox::before {
     /* 伪元素必须有 content 属性才能显示。这里设为空字符串。 */
-    content: "";
+    content: "" !important;
     /* 绝对定位，相对于父元素（.switch）的位置来放置。 */
-    position: absolute;
+    position: absolute !important;
     width: 16px;
     height: 16px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     background-color: white;
     /* 距离父容器顶部的距离。这里设为 2px，使圆点上下有 2px 空隙，视觉居中（父高 24px，圆点高 20px，上下各 2px）。 */
     top: 2px;
@@ -521,21 +521,21 @@
 .solar-terms-row .ziping-switch-checkbox:checked:after,
 .tab-content .ziping-switch-checkbox:checked:after,
 .dayun-info .ziping-switch-checkbox:checked:after {
-    content: none;
+    content: none !important;
 }
 
 /* 3. 选中（开启）状态：改变背景色 */
 .solar-terms-row .ziping-switch-checkbox:checked,
 .tab-content .ziping-switch-checkbox:checked,
 .dayun-info .ziping-switch-checkbox:checked {
-  background-color: var(--interactive-accent); 
+  background-color: var(--interactive-accent) !important; 
 }
 
 /* 4. 选中时圆点向右滑动 */
 .solar-terms-row .ziping-switch-checkbox:checked::before,
 .tab-content .ziping-switch-checkbox:checked::before,
 .dayun-info .ziping-switch-checkbox:checked::before {
-  transform: translateX(16px);
+  transform: translateX(16px) !important;
 }
 
 .ziping-margin-left-10 {
