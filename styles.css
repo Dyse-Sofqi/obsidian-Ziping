@@ -529,6 +529,7 @@
 .tab-content .ziping-switch-checkbox:checked,
 .dayun-info .ziping-switch-checkbox:checked {
   background-color: var(--interactive-accent) !important; 
+  background-image: none !important;
 }
 
 /* 4. 选中时圆点向右滑动 */
