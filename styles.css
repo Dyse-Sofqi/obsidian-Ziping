@@ -4,7 +4,8 @@
     display: inline-block;
     margin: 0px;
     flex-direction: column;
-    align-items: flex-start;   /* 顶部对齐（交叉轴） */
+    align-items: flex-start;
+    /* 顶部对齐（交叉轴） */
 }
 
 /* 按钮容器样式 */
@@ -16,10 +17,12 @@
     justify-content: center;
     align-items: center;
 }
+
 .bazi-button-container button {
     box-shadow: none;
     border: 1px solid var(--background-modifier-border);
 }
+
 .bazi-button-container button:hover {
     background-color: var(--background-secondary);
 }
@@ -33,6 +36,7 @@
 .ziping-time-selectList {
     border-radius: 0px;
 }
+
 .bazi-name-gender-row,
 .bazi-time-selectors {
     display: flex;
@@ -42,8 +46,8 @@
 }
 
 .ziping-flex .ziping-button-active {
-        background-color: var(--background-secondary);
-        color: var(--interactive-accent);
+    background-color: var(--background-secondary);
+    color: var(--interactive-accent);
 }
 
 /* 结果显示容器样式 */
@@ -52,7 +56,6 @@
     padding: 6px;
     display: inline-block;
 }
-
 
 /* 八字排盘表格样式 */
 #bazi-result table {
@@ -95,9 +98,10 @@
     margin-top: 5px;
 }
 
-.dayun-info P{
+.dayun-info P {
     margin: 6px 0;
 }
+
 /* 大运列表容器 - 水平一行展示 */
 .dayun-list {
     display: flex;
@@ -118,14 +122,10 @@
     min-width: 41px;
     height: auto;
     border: none;
-    background-color: #f5f5f5;
+    background-color: var(--background-secondary);
     line-height: 1.3;
     border-radius: 0;
     box-shadow: none !important;
-}
-
-.dayun-btn:hover {
-    background-color: #e7e7e7;
 }
 
 /* 大运按钮内部元素 */
@@ -149,10 +149,47 @@
     margin: 0;
 }
 
-/* 大运按钮选中状态 */
-.dayun-btn.is-selected {
-    background-color: rgba(0, 0, 0, 0.05);
+.liunian-btn:hover,
+.dayun-btn:hover,
+.liuyue-btn:hover {
+    background-color: var(--background-secondary-alt);
+}
+
+/* 第一层：定义基础 Fallback（假设没有任何主题变量） */
+/* 使用 @media 作为兜底，兼容性最好 */
+.dayun-btn.is-selected,
+.liunian-btn.is-selected,
+.liuyue-btn.is-selected {
+    /* 边框：优先使用主题色，没有则用你指定的 #7d5fff */
     border-color: var(--interactive-accent, #7d5fff);
+    
+    /* 文字：选中态建议加深，同样利用变量回退 */
+    color: var(--interactive-accent, #5f4bd4);
+    font-weight: 500;
+
+    /* 背景：默认按浅色模式处理 (黑半透明) */
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* 第二层：无主题变量时，自动适配系统深色模式 */
+/* 这里的媒体查询会在没有覆盖背景变量时生效 */
+@media (prefers-color-scheme: dark) {
+    .dayun-btn.is-selected,
+    .liunian-btn.is-selected,
+    .liuyue-btn.is-selected {
+        /* 深色下如果不干预会看不见，强制改为白色半透明 */
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+}
+
+/* 第三层：如果有主题系统，让主题变量覆盖上面所有设置 */
+/* 假设你的项目中存在 .theme-dark 类或 data-theme 属性 */
+/* 这是一个例子，具体看你们项目的根类名 */
+[data-theme="dark"] .dayun-btn.is-selected,
+[data-theme="dark"] .liunian-btn.is-selected,
+[data-theme="dark"] .liuyue-btn.is-selected {
+    /* 利用主题提供的专用选中背景变量，如果没有则回退到带透明度的强调色 */
+    background-color: var(--button-selected-background, rgba(125, 95, 255, 0.15));
 }
 
 /* 干支历行 - 水平一行展示 */
@@ -202,15 +239,11 @@
     min-width: 41px;
     height: auto;
     border: none;
-    background-color: #f5f5f5;
+    background-color: var(--background-secondary);
     line-height: 1.2;
     font-size: 11px;
     border-radius: 0;
     box-shadow: none !important;
-}
-
-.liunian-btn:hover {
-    background-color: #e7e7e7;
 }
 
 /* 流年按钮内部元素 */
@@ -232,12 +265,6 @@
     line-height: 1.3;
     margin: 0;
     opacity: 0.8;
-}
-
-/* 流年按钮选中状态 */
-.liunian-btn.is-selected {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: var(--interactive-accent, #7d5fff);
 }
 
 /* 流年行样式（用于第四行小运展示） */
@@ -270,15 +297,11 @@
     min-width: 41px;
     height: auto;
     border: none;
-    background-color: #f5f5f5;
+    background-color: var(--background-secondary);
     line-height: 1.1;
     font-size: 11px;
     border-radius: 0;
     box-shadow: none !important;
-}
-
-.liuyue-btn:hover {
-    background-color: #e7e7e7;
 }
 
 /* 流月按钮内部元素 */
@@ -308,12 +331,6 @@
     line-height: 1.2;
     margin: 0;
     opacity: 0.7;
-}
-
-/* 流月按钮选中状态 */
-.liuyue-btn.is-selected {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: var(--interactive-accent, #7d5fff);
 }
 
 /* 时间调整按钮容器 */
@@ -359,12 +376,6 @@
     font-weight: bold;
     border-bottom: 1px solid #ccc;
 }
-
-/* 时柱与大运列之间的框线（第5列和第6列之间，时柱是第5列，大运是第6列） */
-/* #bazi-result tr td:nth-child(6),
-#bazi-result tr:nth-child(3) th:nth-child(6) {
-    border-left: 1px solid #ccc;
-} */
 
 /* 首列 */
 #bazi-result tr td:first-child {
@@ -518,6 +529,7 @@
     left: 2px;
     transition: transform 0.2s;
 }
+
 .solar-terms-row .ziping-switch-checkbox:checked:after,
 .tab-content .ziping-switch-checkbox:checked:after,
 .dayun-info .ziping-switch-checkbox:checked:after {
@@ -528,23 +540,25 @@
 .solar-terms-row .ziping-switch-checkbox:checked,
 .tab-content .ziping-switch-checkbox:checked,
 .dayun-info .ziping-switch-checkbox:checked {
-  background-color: var(--interactive-accent) !important; 
-  background-image: none !important;
+    background-color: var(--interactive-accent) !important;
+    background-image: none !important;
 }
 
 /* 4. 选中时圆点向右滑动 */
 .solar-terms-row .ziping-switch-checkbox:checked::before,
 .tab-content .ziping-switch-checkbox:checked::before,
 .dayun-info .ziping-switch-checkbox:checked::before {
-  transform: translateX(16px) !important;
+    transform: translateX(16px) !important;
 }
 
 .ziping-margin-left-10 {
     margin-left: 10px;
 }
+
 .ziping-margin-right-10 {
     margin-right: 10px;
 }
+
 .ziping-margin-left-auto {
     margin-left: auto;
 }
